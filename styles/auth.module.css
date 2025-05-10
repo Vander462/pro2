@@ -1,0 +1,76 @@
+.authContainer {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .authTitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+  
+  .formLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .formInput:focus {
+    border-color: #d63031;
+    outline: none;
+  }
+  
+  .submitBtn {
+    padding: 0.75rem;
+    background-color: #d63031;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitBtn:hover {
+    background-color: #b71c1c;
+  }
+  
+  .authSwitch {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .authSwitchLink {
+    color: #d63031;
+    font-weight: 500;
+  }
+  
+  .errorMessage {
+    color: #dc3545;
+    padding: 0.5rem;
+    background-color: rgba(220, 53, 69, 0.1);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }

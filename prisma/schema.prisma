@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  role      Role     @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cart      CartItem[]
+  orders    Order[]
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+model MenuItem {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  category    String
+  image       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  cartItems   CartItem[]  @relation("MenuItemToCartItem")
+  orderItems  OrderItem[] @relation("MenuItemToOrderItem")
+}
+
+model CartItem {
+  id         Int       @id @default(autoincrement())
+  userId     Int
+  menuItem   MenuItem  @relation("MenuItemToCartItem", fields: [menuItemId], references: [id])
+  menuItemId Int
+  quantity   Int       @default(1)
+  user       User      @relation(fields: [userId], references: [id])
+}
+model Order {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  items       OrderItem[]
+  total       Float
+  status      OrderStatus @default(PENDING)
+  address     String
+  phone       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model OrderItem {
+  id         Int       @id @default(autoincrement())
+  orderId    Int
+  order      Order     @relation(fields: [orderId], references: [id])
+  menuItemId Int
+  menuItem   MenuItem  @relation("MenuItemToOrderItem", fields: [menuItemId], references: [id])
+  quantity   Int       @default(1)
+  price      Float
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  DELIVERING
+  DELIVERED
+  CANCELLED
+}
