@@ -4,6 +4,12 @@ import OrderList from '../components/OrderList';
 import { useUser } from '../lib/auth';
 import styles from '@/styles/Admin.module.css';
 
+export const getServerSideProps = async (context) => {
+  return {
+    props: {} // Will be passed to the page component as props
+  }
+}
+
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('orders');
   const [orders, setOrders] = useState([]);
