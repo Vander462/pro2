@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  // Add assetPrefix for production
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : undefined,
 };
 
 export default nextConfig;
